@@ -10,7 +10,7 @@ alias subl='open -a "Sublime Text"'
 
 # Outputs current battery %, time remaining/to charge, 
 # cycle count, temp, and calculates battery design 
-# capability index.
+# capacity.
 function battery() {
 	pmset -g batt; ioreg -brc AppleSmartBattery | egrep "CycleCount|Temperature"; echo $(ioreg -l -n AppleSmartBattery -r | grep MaxCapacity | awk '{print $3}') / $(ioreg -l -n AppleSmartBattery -r | grep DesignCapacity | awk '{print $3}') \* 100 | bc -l
 }
