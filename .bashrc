@@ -16,7 +16,7 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias clc='clear&&clear' 
-alias subl='open -a "Sublime Text"'
+#alias subl='open -a "Sublime Text"'
 alias ls='ls --sort=extension --color=auto'
 
 # Debian, new RPM, old RPM
@@ -28,20 +28,24 @@ elif type -P yum 1>/dev/null 2>&1; then
     INSTALLER="yum"                                                              
 fi  
 
-alias install="$INSTALLER install"                                               
-alias uninstall="$INSTALLER --purge autoremove"                                  
-alias update="$INSTALLER update"                                                 
-alias upgrade="$INSTALLER upgrade"                                               
-alias sinstall="sudo $INSTALLER install"                                         
-alias suninstall="sudo $INSTALLER --purge autoremove"                            
-alias supdate="sudo $INSTALLER update"                                           
-alias supgrade="sudo $INSTALLER upgrade" 
+alias install='$INSTALLER install'
+alias uninstall='$INSTALLER --purge autoremove'                                  
+alias update='$INSTALLER update'                                                 
+alias upgrade='$INSTALLER upgrade'                                               
+alias sinstall='sudo $INSTALLER install'                                         
+alias suninstall='sudo $INSTALLER --purge autoremove'                            
+alias supdate='sudo $INSTALLER update'                                           
+alias supgrade='sudo $INSTALLER upgrade' 
 
 # Outputs current battery %, time remaining/to charge, 
 # cycle count, temp, and calculates battery design 
 # capability index.
 function battery() {
-    pmset -g batt; ioreg -brc AppleSmartBattery | egrep "CycleCount|Temperature"; echo $(ioreg -l -n AppleSmartBattery -r | grep MaxCapacity | awk '{print $3}') / $(ioreg -l -n AppleSmartBattery -r | grep DesignCapacity | awk '{print $3}') \* 100 | bc -l
+    pmset -g batt; ioreg -brc AppleSmartBattery | egrep "CycleCount
+    |Temperature"; echo $(ioreg -l -n AppleSmartBattery -r 
+    | grep MaxCapacity | awk '{print $3}') / $(ioreg -l -n 
+    AppleSmartBattery -r | grep DesignCapacity 
+    | awk '{print $3}') \* 100 | bc -l
 }
 
 # Bash prompt
