@@ -18,6 +18,7 @@ alias mv='mv -i'
 alias clc='clear&&clear' 
 #alias subl='open -a "Sublime Text"'
 alias ls='ls --sort=extension --color=auto'
+alias myip='curl ifconfig.co'
 
 # Debian, new RPM, old RPM
 if type -P apt-get 1>/dev/null 2>&1; then                                        
@@ -29,11 +30,11 @@ elif type -P yum 1>/dev/null 2>&1; then
 fi  
 
 alias install='$INSTALLER install'
-alias uninstall='$INSTALLER remove'                                  
+alias uninstall='$INSTALLER --purge autoremove'                                  
 alias update='$INSTALLER update'                                                 
 alias upgrade='$INSTALLER upgrade'                                               
 alias sinstall='sudo $INSTALLER install'                                         
-alias suninstall='sudo $INSTALLER remove'                            
+alias suninstall='sudo $INSTALLER --purge autoremove'                            
 alias supdate='sudo $INSTALLER update'                                           
 alias supgrade='sudo $INSTALLER upgrade' 
 
