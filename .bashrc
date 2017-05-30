@@ -29,11 +29,11 @@ elif type -P yum 1>/dev/null 2>&1; then
 fi  
 
 alias install='$INSTALLER install'
-alias uninstall='$INSTALLER --purge autoremove'                                  
+alias uninstall='$INSTALLER remove'                                  
 alias update='$INSTALLER update'                                                 
 alias upgrade='$INSTALLER upgrade'                                               
 alias sinstall='sudo $INSTALLER install'                                         
-alias suninstall='sudo $INSTALLER --purge autoremove'                            
+alias suninstall='sudo $INSTALLER remove'                            
 alias supdate='sudo $INSTALLER update'                                           
 alias supgrade='sudo $INSTALLER upgrade' 
 
