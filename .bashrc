@@ -16,8 +16,7 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias clc='clear&&clear' 
-#alias subl='open -a "Sublime Text"'
-alias ls='ls --sort=extension --color=auto'
+alias subl='open -a "Sublime Text"'
 alias myip='curl ifconfig.co'
 
 # Debian, new RPM, old RPM
