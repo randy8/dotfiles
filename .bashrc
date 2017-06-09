@@ -45,10 +45,10 @@ shopt -s histappend # Append not overwrite
 # -n reads from bash_history; -w saves history to file/erases dups
 # -c prevents clearing the history buffer; -r restores history buffer from file
 export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
 # Outputs current battery %, time remaining/to charge, 
 # cycle count, temp, and calculates battery design 
 # capability index.
-
 function battery() {
     pmset -g batt; ioreg -brc AppleSmartBattery | egrep "CycleCount|Temperature"; echo $(ioreg -l -n AppleSmartBattery -r | grep MaxCapacity | awk '{print $3}') / $(ioreg -l -n AppleSmartBattery -r | grep DesignCapacity | awk '{print $3}') \* 100 | bc -l
 }
