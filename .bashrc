@@ -37,8 +37,9 @@ alias suninstall='sudo $INSTALLER remove'
 alias supdate='sudo $INSTALLER update'                                           
 alias supgrade='sudo $INSTALLER upgrade' 
 
-# .bash_history set to save 10000 lines
-HISTFILESIZE=10000  
+# .bash_history is forever
+HISTSIZE=-1
+HISTFILESIZE=-1 
 
 # Outputs current battery %, time remaining/to charge, 
 # cycle count, temp, and calculates battery design 
