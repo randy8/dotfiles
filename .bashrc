@@ -38,9 +38,10 @@ alias supdate='sudo $INSTALLER update'
 alias supgrade='sudo $INSTALLER upgrade' 
 
 # .bash_history is forever
-HISTSIZE=-1
-HISTFILESIZE=-1 
-export HISTCONTROL=ignoreboth:erasedups
+export HISTSIZE=-1
+export HISTFILESIZE=-1 
+export HISTCONTROL=ignoredups:erasedups
+export HISTFILE=~/.bash_history
 
 # Outputs current battery %, time remaining/to charge, 
 # cycle count, temp, and calculates battery design 
