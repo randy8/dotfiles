@@ -54,9 +54,8 @@ function battery() {
 }
 
 # Bash prompt
-# export PS1="[\u@\h in \w]\\$ "
 username='\e[1;34m\u\e[0m';
 hostname='\e[0;32m\h\e[0m';
 directory='\e[1;36m\W\e[0m';
-time='\t'
-export PS1="[$username@$hostname in $directory at $time]\\$ "
+# time='\t'
+export PS1="[$username@$hostname in $directory]\\$ "

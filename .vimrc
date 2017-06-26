@@ -1,5 +1,5 @@
 " ~/.vimrc
-"colorscheme elflord
+colorscheme elflord
 
 " \t and backspace are 4 spaces
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4 autoindent smarttab
