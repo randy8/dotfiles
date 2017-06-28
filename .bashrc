@@ -18,6 +18,7 @@ alias mv='mv -i'
 alias clc='clear&&clear' 
 #alias subl='open -a "Sublime Text"'
 alias myip='curl ifconfig.co'
+alias lls='ls -halFg'  
 
 # Debian, new RPM, old RPM
 if type -P apt-get 1>/dev/null 2>&1; then                                        
