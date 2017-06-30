@@ -16,9 +16,14 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias clc='clear&&clear' 
-#alias subl='open -a "Sublime Text"'
-alias myip='curl ifconfig.co'
-alias lls='ls -halFg'  
+#alias subl='open -a "Sublime Text"' 
+
+# -human readable size, -all including hidden directories, -long list            
+# -Filetype indicator, -group but not owner listed                               
+alias lls='ls -halFg'                                                            
+                                                                                 
+# Color-coded with fixed width columns and abbreviated commit hash               
+alias glog="git log --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=short | column -ts'|' | less -r"
 
 # Debian, new RPM, old RPM
 if type -P apt-get 1>/dev/null 2>&1; then                                        
@@ -38,11 +43,12 @@ alias suninstall='sudo $INSTALLER remove'
 alias supdate='sudo $INSTALLER update'                                           
 alias supgrade='sudo $INSTALLER upgrade' 
 
-# .bash_history is forever
+# .bash_history is forever 
 export HISTSIZE=-1
 export HISTFILESIZE=-1 
 export HISTCONTROL=ignoredups:erasedups # No duplicates
 shopt -s histappend # Append not overwrite
+
 # -n reads from bash_history; -w saves history to file/erases dups
 # -c prevents clearing the history buffer; -r restores history buffer from file
 export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
@@ -59,4 +65,5 @@ username='\e[1;34m\u\e[0m';
 hostname='\e[0;32m\h\e[0m';
 directory='\e[1;36m\W\e[0m';
 # time='\t'
+# Prompt has a tendency to wrap when window size is too small
 export PS1="[$username@$hostname in $directory]\\$ "
