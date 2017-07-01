@@ -20,7 +20,7 @@ alias clc='clear&&clear'
 
 # -human readable size, -all including hidden directories, -long list            
 # -Filetype indicator, -group but not owner listed                               
-alias lls='ls -halFg'                                                            
+alias lls='ls -halFo'                                                            
                                                                                  
 # Color-coded with fixed width columns and abbreviated commit hash               
 alias glog="git log --pretty=format:'%C(yellow)%h|%Cred%ad|%Cblue%an|%Cgreen%d %Creset%s' --date=short | column -ts'|' | less -r"
