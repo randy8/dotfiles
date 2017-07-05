@@ -19,7 +19,7 @@ alias clc='clear&&clear'
 #alias subl='open -a "Sublime Text"' 
 
 # -human readable size, -all including hidden directories, -long list            
-# -Filetype indicator, -group but not owner listed                               
+# -Filetype indicator, -owner listed but not group                            
 alias lls='ls -halFo'                                                            
                                                                                  
 # Color-coded with fixed width columns and abbreviated commit hash               
