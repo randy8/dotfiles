@@ -61,9 +61,6 @@ function battery() {
 }
 
 # Bash prompt
-username='\e[1;34m\u\e[0m';
-hostname='\e[0;32m\h\e[0m';
-directory='\e[1;36m\W\e[0m';
-# time='\t'
-# Prompt has a tendency to wrap when window size is too small
-export PS1="[$username@$hostname in $directory]\\$ "
+# ┌─USER_green@HOST_blue in DIRECTORY_yellow at TIME_purple
+# └─ <COMMANDS>
+export PS1="┌─\[\e[1;32m\u\e[0;37m\]\e[0m@\e[1;34m\h\e[0;37m \e[0min \e[1;33m\w\e[0;37m \e[0mat \e[1;35m\t\n\[\e[0;37m\]└─ \[\e[0m\]"

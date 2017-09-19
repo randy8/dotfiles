@@ -2,4 +2,4 @@
 Configuration
 *************
 
-To copy files, clone this repo and run ``config.sh``.
+To copy files, run ``config.sh``.
