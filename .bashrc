@@ -1,12 +1,12 @@
 # ~/.bashrc
  
-hello() {
-    echo "Hello, $USER!"
-    ls
-}
+# hello() {
+#     echo "Hello, $USER!"
+#     ls
+# }
 
-# New session startup
-hello
+# # New session startup
+# hello
 
 # Cycles through possible name endings
 # if not natively available already.
