@@ -16,7 +16,8 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias clc='clear&&clear' 
-#alias subl='open -a "Sublime Text"' 
+# Symlink for Sublime:
+# ln -s <dir of executable> /usr/local/bin/subl
 
 # -human readable size, -all including hidden directories, -long list            
 # -Filetype indicator, -owner listed but not group                            
