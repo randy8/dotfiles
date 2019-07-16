@@ -52,6 +52,7 @@ alias supgrade='sudo $INSTALLER upgrade'
 export HISTSIZE=-1
 export HISTFILESIZE=-1 
 export HISTCONTROL=ignoredups:erasedups # No duplicates
+export HISTTIMEFORMAT="%m/%d/%y %T " # Time stamp
 shopt -s histappend # Append not overwrite
 
 # -n reads from bash_history; -w saves history to file/erases dups
