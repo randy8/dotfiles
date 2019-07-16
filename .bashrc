@@ -43,19 +43,19 @@ alias suninstall='sudo $INSTALLER remove'
 alias supdate='sudo $INSTALLER update'                                           
 alias supgrade='sudo $INSTALLER upgrade' 
 
-# .bash_history is forever 
-export HISTSIZE=-1
-export HISTFILESIZE=-1 
-export HISTTIMEFORMAT="%m/%d/%y %T " # Time stamp
-export HISTCONTROL=ignoredups:erasedups # No duplicates
-shopt -s histappend # Append not overwrite
-
+# Bash history settings                                                          
+HISTSIZE=99999                                                                   
+HISTFILESIZE=99999                                                               
+HISTTIMEFORMAT="%m/%d/%y %T " # Time stamp                                       
+# export HISTCONTROL=ignoredups:erasedups # No duplicates                        
+# shopt -s histappend # Append not overwrite                                     
 # Going through history causes duplicates (e.g. if 'vim ~/.bashrc' was my last command, it'll 
 # appear multiple times when going through history via up arrow). Likely culprit is below due 
-# to the order in which the bashrc is read
-# -n reads from bash_history; -w saves history to file/erases dups
-# -c prevents clearing the history buffer; -r restores history buffer from file
-#export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_
+# to the order in which the bashrc is read                                       
+# -n reads from bash_history; -w saves history to file/erases dups               
+# -c prevents clearing the history buffer; -r restores history buffer from file  
+# export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+
 
 # For macOS: outputs current battery %, time remaining/to charge, 
 # cycle count, temp, and calculates battery design 
