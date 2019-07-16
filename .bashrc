@@ -15,11 +15,14 @@ bind "set show-all-if-ambiguous on"
 bind "set completion-ignore-case on"
 bind "set menu-complete-display-prefix on"
 
-
+# Asks for confirmation when removing, copying, or moving files
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+
+# Clears terminal window entirely (ganked from MATLAB)
 alias clc='clear&&clear' 
+
 # Symlink for Sublime:
 # ln -s <dir of executable> /usr/local/bin/subl
 
@@ -51,13 +54,14 @@ alias supgrade='sudo $INSTALLER upgrade'
 # .bash_history is forever 
 export HISTSIZE=-1
 export HISTFILESIZE=-1 
-export HISTCONTROL=ignoredups:erasedups # No duplicates
 export HISTTIMEFORMAT="%m/%d/%y %T " # Time stamp
-shopt -s histappend # Append not overwrite
 
+# Going through history causes duplicates (e.g. if 'vim ~/.bashrc' was my last command it will appear multiple times upon hitting up arrow, likely due to the ordering in which the bashrc is read
+# export HISTCONTROL=ignoredups:erasedups # No duplicates
+#shopt -s histappend # Append not overwrite
 # -n reads from bash_history; -w saves history to file/erases dups
 # -c prevents clearing the history buffer; -r restores history buffer from file
-export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+#export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
 # For macOS: outputs current battery %, time remaining/to charge, 
 # cycle count, temp, and calculates battery design 
