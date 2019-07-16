@@ -11,6 +11,10 @@
 # Cycles through possible name endings
 # if not natively available already.
 bind '"\t":menu-complete'
+bind "set show-all-if-ambiguous on"
+bind "set completion-ignore-case on"
+bind "set menu-complete-display-prefix on"
+
 
 alias rm='rm -i'
 alias cp='cp -i'
@@ -54,7 +58,7 @@ shopt -s histappend # Append not overwrite
 # -c prevents clearing the history buffer; -r restores history buffer from file
 export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
-# Outputs current battery %, time remaining/to charge, 
+# For macOS: outputs current battery %, time remaining/to charge, 
 # cycle count, temp, and calculates battery design 
 # capability index.
 function battery() {
