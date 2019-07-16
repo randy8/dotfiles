@@ -1,13 +1,5 @@
 # ~/.bashrc
  
-# hello() {
-#     echo "Hello, $USER!"
-#     ls
-# }
-
-# # New session startup
-# hello
-
 # Cycles through possible name endings
 # if not natively available already.
 bind '"\t":menu-complete'
@@ -55,13 +47,15 @@ alias supgrade='sudo $INSTALLER upgrade'
 export HISTSIZE=-1
 export HISTFILESIZE=-1 
 export HISTTIMEFORMAT="%m/%d/%y %T " # Time stamp
+export HISTCONTROL=ignoredups:erasedups # No duplicates
+shopt -s histappend # Append not overwrite
 
-# Going through history causes duplicates (e.g. if 'vim ~/.bashrc' was my last command it will appear multiple times upon hitting up arrow, likely due to the ordering in which the bashrc is read
-# export HISTCONTROL=ignoredups:erasedups # No duplicates
-#shopt -s histappend # Append not overwrite
+# Going through history causes duplicates (e.g. if 'vim ~/.bashrc' was my last command, it'll 
+# appear multiple times when going through history via up arrow). Likely culprit is below due 
+# to the order in which the bashrc is read
 # -n reads from bash_history; -w saves history to file/erases dups
 # -c prevents clearing the history buffer; -r restores history buffer from file
-#export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+#export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_
 
 # For macOS: outputs current battery %, time remaining/to charge, 
 # cycle count, temp, and calculates battery design 
