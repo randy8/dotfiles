@@ -15,9 +15,6 @@ alias mv='mv -i'
 # Clears terminal window entirely (ganked from MATLAB)
 alias clc='clear&&clear' 
 
-# Symlink for Sublime:
-# ln -s <dir of executable> /usr/local/bin/subl
-
 # -human readable size, -all including hidden directories, -long list            
 # -Filetype indicator, -owner listed but not group                            
 alias lls='ls -halFo'                                                            
@@ -56,15 +53,58 @@ HISTTIMEFORMAT="%m/%d/%y %T " # Time stamp
 # -c prevents clearing the history buffer; -r restores history buffer from file  
 # export PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
 
-
-# For macOS: outputs current battery %, time remaining/to charge, 
-# cycle count, temp, and calculates battery design 
-# capability index.
-function battery() {
-    pmset -g batt; ioreg -brc AppleSmartBattery | egrep "CycleCount|Temperature"; echo $(ioreg -l -n AppleSmartBattery -r | grep MaxCapacity | awk '{print $3}') / $(ioreg -l -n AppleSmartBattery -r | grep DesignCapacity | awk '{print $3}') \* 100 | bc -l
+# Get current branch
+function parse_git_branch() {
+	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+	if [ ! "${BRANCH}" == "" ]
+	then
+		STAT=`parse_git_dirty`
+		echo "[${BRANCH}${STAT}]"
+	else
+		echo ""
+	fi
 }
 
-# Bash prompt
-# ┌─USER_green@HOST_blue in DIRECTORY_yellow at TIME_purple
+# Display git status with a symbol
+function parse_git_dirty {
+	status=`git status 2>&1 | tee`
+	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+	bits=''
+	if [ "${renamed}" == "0" ]; then
+		bits=">${bits}"
+	fi
+	if [ "${ahead}" == "0" ]; then
+		bits="*${bits}"
+	fi
+	if [ "${newfile}" == "0" ]; then
+		bits="+${bits}"
+	fi
+	if [ "${untracked}" == "0" ]; then
+		bits="?${bits}"
+	fi
+	if [ "${deleted}" == "0" ]; then
+		bits="x${bits}"
+	fi
+	if [ "${dirty}" == "0" ]; then
+		bits="!${bits}"
+	fi
+	if [ ! "${bits}" == "" ]; then
+		echo " ${bits}"
+	else
+		echo ""
+	fi
+}
+
+export USER_GREEN="\[\e[1;32m\]\u\[\e[m\]"
+export HOST_BLUE="\[\e[1;34m\]\h\[\e[m\]"
+export CURR_DIR_YELLOW="\[\e[1;33m\]\w\[\e[m\]"
+export PARSE_GIT_BRANCH_CYAN="\[\e[1;36m\]\$(parse_git_branch)\[\e[m\]"
+export TIME_PURPLE="\[\e[1;35m\]\t\[\e[m\]\n"
+# ┌─USER@HOST in DIR [BRANCH] at TIME
 # └─ <COMMANDS>
-export PS1="┌─\[\e[1;32m\u\e[0;37m\]\e[0m@\e[1;34m\h\e[0;37m \e[0min \e[1;33m\w\e[0;37m \e[0mat \e[1;35m\t\n\[\e[0;37m\]└─ \[\e[0m\]"
+export PS1="┌─${USER_GREEN}@${HOST_BLUE} in ${CURR_DIR_YELLOW} ${PARSE_GIT_BRANCH_CYAN} at ${TIME_PURPLE}└─"
