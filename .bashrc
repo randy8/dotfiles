@@ -59,7 +59,7 @@ function parse_git_branch() {
 	if [ ! "${BRANCH}" == "" ]
 	then
 		STAT=`parse_git_dirty`
-		echo "[${BRANCH}${STAT}]"
+		echo " [${BRANCH}${STAT}]"
 	else
 		echo ""
 	fi
@@ -107,4 +107,4 @@ export PARSE_GIT_BRANCH_CYAN="\[\e[1;36m\]\$(parse_git_branch)\[\e[m\]"
 export TIME_PURPLE="\[\e[1;35m\]\t\[\e[m\]\n"
 # ┌─USER@HOST in DIR [BRANCH] at TIME
 # └─ <COMMANDS>
-export PS1="┌─${USER_GREEN}@${HOST_BLUE} in ${CURR_DIR_YELLOW} ${PARSE_GIT_BRANCH_CYAN} at ${TIME_PURPLE}└─"
+export PS1="┌─${USER_GREEN}@${HOST_BLUE} in ${CURR_DIR_YELLOW}${PARSE_GIT_BRANCH_CYAN} at ${TIME_PURPLE}└─"
