@@ -13,7 +13,7 @@ wget https://github.com/randy8/dotfiles/archive/master.zip && unzip master.zip
 cd dotfiles-master
 
 # Back up
-cp ~/.bash_profile ~/.bash_profile-$(date +%Y-%m-%d).bkup && cp ~/.bashrc ~/.bashrc-$(date +%Y-%m-%d).bkup && cp ~/.vimrc ~/.vimrc-$(date +%Y-%m-%d).bkup
+cp ~/.bash_profile ~/.bash_profile-$(date '+%Y-%m-%d-%H-%M-%S').bkup && cp ~/.bashrc ~/.bashrc-$(date '+%Y-%m-%d-%H-%M-%S').bkup && cp ~/.vimrc ~/.vimrc-$(date '+%Y-%m-%d-%H-%M-%S').bkup
 
 # Replace
 cp .bash_profile ~/.bash_profile && cp .bashrc ~/.bashrc && cp .vimrc ~/.vimrc
