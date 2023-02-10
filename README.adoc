@@ -13,15 +13,20 @@ wget https://github.com/randy8/dotfiles/archive/master.zip && unzip master.zip
 cd dotfiles-master
 
 # Back up
-cp ~/.bash_profile ~/.bash_profile-$(date '+%Y-%m-%d-%H-%M-%S').bkup && cp ~/.bashrc ~/.bashrc-$(date '+%Y-%m-%d-%H-%M-%S').bkup && cp ~/.vimrc ~/.vimrc-$(date '+%Y-%m-%d-%H-%M-%S').bkup
+cp ~/.bash_profile ~/.bash_profile-$(date '+%Y-%m-%d-%H-%M-%S').bkup \
+&& cp ~/.bashrc ~/.bashrc-$(date '+%Y-%m-%d-%H-%M-%S').bkup \
+&& cp ~/.vimrc ~/.vimrc-$(date '+%Y-%m-%d-%H-%M-%S').bkup
 
 # Replace
-cp .bash_profile ~/.bash_profile && cp .bashrc ~/.bashrc && cp .vimrc ~/.vimrc
+cp .bash_profile ~/.bash_profile \
+&& cp .bashrc ~/.bashrc \
+&& cp .vimrc ~/.vimrc
+
+# Clean up
 cd ~
 rm -rf ~/dotfiles-master ~/master.zip
 exec bash
 EOF
 
-chmod +x dotfiles.sh
-./dotfiles.sh
+sh dotfiles.sh
 -------------
