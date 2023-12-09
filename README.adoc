@@ -5,28 +5,67 @@ Without cloning:
 ~~~~~~~~~~~~~~~~
 [source,bash]
 -------------
-cat << EOF > dotfiles.sh
 #!/bin/bash
 
-cd ~
-wget https://github.com/randy8/dotfiles/archive/master.zip && unzip master.zip
-cd dotfiles-master
+cat << EOF > setup_dotfiles.sh
+#!/bin/bash
 
-# Back up
-cp ~/.bash_profile ~/.bash_profile-$(date '+%Y-%m-%d-%H-%M-%S').bkup \
-&& cp ~/.bashrc ~/.bashrc-$(date '+%Y-%m-%d-%H-%M-%S').bkup \
-&& cp ~/.vimrc ~/.vimrc-$(date '+%Y-%m-%d-%H-%M-%S').bkup
+DOTFILES_REPO="https://github.com/randy8/dotfiles/archive/master.zip"
+BACKUP_DIR="$HOME/dotfiles_backup"
 
-# Replace
-cp .bash_profile ~/.bash_profile \
-&& cp .bashrc ~/.bashrc \
-&& cp .vimrc ~/.vimrc
+# Function to print a formatted message
+print_message() {
+    local message="$1"
+    echo -e "\e[1;32m$message\e[0m"  # Green text
+}
 
-# Clean up
-cd ~
-rm -rf ~/dotfiles-master ~/master.zip
-exec bash
+# Function to backup and replace dotfiles for a specific user
+setup_dotfiles() {
+    local user_home="$1"
+    local dotfiles=(".bash_profile" ".bashrc" ".vimrc")
+
+    # Clone dotfiles repository
+    cd "$user_home" || exit
+    wget "$DOTFILES_REPO" -O dotfiles.zip && unzip dotfiles.zip && rm dotfiles.zip
+    cd dotfiles-master || exit
+
+    # Create the backup directory if it doesn't exist
+    mkdir -p "$BACKUP_DIR"
+
+    # Backup existing dotfiles and replace with new ones
+    for file in "${dotfiles[@]}"; do
+        local backup_file="$BACKUP_DIR/$(basename "$file")-$(date '+%Y-%m-%d-%H-%M-%S').bkup"
+
+        # Backup the file if it exists
+        [ -e "$file" ] && cp "$file" "$backup_file"
+
+        # Replace with new dotfile
+        cp "$file" "$user_home/$file"
+    done
+
+    # Clean up downloaded files
+    cd "$user_home" || exit
+    rm -rf dotfiles-master
+
+    # Restart the shell to apply changes
+    exec bash
+}
+
+# Setup dotfiles for the regular user
+setup_dotfiles "$HOME"
+print_message "Regular user dotfiles setup completed."
+
+# Check if the script is running with root privileges
+if [ "$EUID" -eq 0 ]; then
+    # Setup dotfiles for the root user
+    setup_dotfiles "/root"
+    print_message "Root user dotfiles setup completed."
+else
+    print_message "This script needs root privileges to configure dotfiles for the root account. Exiting."
+    exit 1
+fi
 EOF
 
-sh dotfiles.sh
+chmod +x setup_dotfiles.sh
+./setup_dotfiles.sh
 -------------
