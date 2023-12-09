@@ -1,12 +1,8 @@
-Configuration
--------------
+= Configuration
 
-Without cloning:
-~~~~~~~~~~~~~~~~
+== Without cloning:
 [source,bash]
 -------------
-#!/bin/bash
-
 cat << EOF > setup_dotfiles.sh
 #!/bin/bash
 
@@ -65,7 +61,10 @@ else
     exit 1
 fi
 EOF
+-------------
 
+== Run the script:
+```
 chmod +x setup_dotfiles.sh
 ./setup_dotfiles.sh
--------------
+```
